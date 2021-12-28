@@ -68,7 +68,9 @@ const App = () => {
       </form>
     )}
     <button onClick={() => deleteNote(note.id)}>delete</button>
-    <button onClick={() => setNoteEditing(note.id)}>edit</button>
+    {note.id !== noteEditing ? <button onClick={() => setNoteEditing(note.id)}>edit</button>
+  : null  
+  }
   </div>
 ))}
     </div>

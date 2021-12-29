@@ -6,7 +6,7 @@ function App() {
   // const [nums, setNums] = useState([1, 2, 4])
 
   const [nums, setNums] = useState(
-    localStorage.getItem('nums') || [1, 2, 4]
+    JSON.parse(localStorage.getItem('nums')) || [1, 2, 4]
   );
 
 

@@ -1,25 +1,65 @@
-import React from 'react';
+import React, { useState, useEffect } from "react"
 
-const App = () => {
-  const [value, setValue] = React.useState(
-    localStorage.getItem('myValueInLocalStorage') || ''
+
+function App() {
+
+  // const [nums, setNums] = useState([1, 2, 4])
+
+  const [nums, setNums] = useState(
+    localStorage.getItem('nums') || [1, 2, 4]
   );
 
-  React.useEffect(() => {
-    localStorage.setItem('myValueInLocalStorage', value);
-  }, [value]);
 
-  const onChange = event => setValue(event.target.value);
+
+  useEffect(() => {
+
+    localStorage.setItem("nums", JSON.stringify(nums))
+
+  }, [nums])
+
+// GENERATING NON REPEATING NUMBERS
+// https://stackoverflow.com/questions/18806210/generating-non-repeating-random-numbers-in-js 
+  function handleAddClick() {
+    // let ranNums = [];
+    // let i = nums.length;
+    // let j = 0;
+
+    // while (i--) {
+    //   j = Math.floor(Math.random() * (i+1));
+    //   ranNums.push(nums[j]);
+    //   nums.splice(j,1);
+    // }
+
+    setNums([...nums, Math.random()])
+
+  }
+
+// GENERATING NON REPEATING NUMBERS
+// https://stackoverflow.com/questions/18806210/generating-non-repeating-random-numbers-in-js 
+//   var nums = [1,2,3,4,5,6,7,8,9,10],
+//     ranNums = [],
+//     i = nums.length,
+//     j = 0;
+
+// while (i--) {
+//     j = Math.floor(Math.random() * (i+1));
+//     ranNums.push(nums[j]);
+//     nums.splice(j,1);
+// }
+
+
 
   return (
-    <div className="App">
-      <h1>Hello React with Local Storage!</h1>
 
-      <input value={value} type="text" onChange={onChange} />
+    <button className="btn btn-primary m-5" onClick={handleAddClick}>
 
-      <p>{value}</p>
-    </div>
-  );
-};
+      Add Random Number
 
-export default App;
+    </button>
+
+  )
+
+}
+
+
+export default App
